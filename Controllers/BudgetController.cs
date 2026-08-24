@@ -50,4 +50,28 @@ public class BudgetController : Controller
         _context.SaveChanges(); 
         return RedirectToAction("Index");
     }
+
+    public IActionResult Delete(int id)
+    {
+        var  budget=_context.Budgets.Find(id);
+
+        if(budget == null)
+        {
+            return NotFound();
+        } 
+        return View(budget);
+    }
+
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var budget=_context.Budgets.Find(id);
+        if (budget == null)
+        {
+            return NotFound();
+        }
+        _context.Budgets.Remove(budget);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
 }
