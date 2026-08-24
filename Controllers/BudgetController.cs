@@ -1,6 +1,7 @@
 using BudgetApp.Data;
 using BudgetApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BudgetApp.Controllers;
 
@@ -27,8 +28,13 @@ public class BudgetController : Controller
     [HttpPost]
     public IActionResult Create(Budget budget)
     {
+        if(!ModelState.IsValid)
+        {
+            return View(budget);
+        }
         _context.Budgets.Add(budget);
         _context.SaveChanges();
+        
         return RedirectToAction("Index");
 
         //return View();
@@ -37,15 +43,23 @@ public class BudgetController : Controller
     public IActionResult Edit(int id)
     {
         var budget=_context.Budgets.Find(id);
+
         if(budget ==null)
         {
             return NotFound();
         }
+
         return View(budget);
     }
+
     [HttpPost]
     public IActionResult Edit(Budget budget)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(budget);
+        }
+
         _context.Budgets.Update(budget);
         _context.SaveChanges(); 
         return RedirectToAction("Index");
@@ -64,6 +78,11 @@ public class BudgetController : Controller
 
     public IActionResult DeleteConfirmed(int id)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
         var budget=_context.Budgets.Find(id);
         if (budget == null)
         {
