@@ -33,4 +33,21 @@ public class BudgetController : Controller
 
         //return View();
     }
+
+    public IActionResult Edit(int id)
+    {
+        var budget=_context.Budgets.Find(id);
+        if(budget ==null)
+        {
+            return NotFound();
+        }
+        return View(budget);
+    }
+    [HttpPost]
+    public IActionResult Edit(Budget budget)
+    {
+        _context.Budgets.Update(budget);
+        _context.SaveChanges(); 
+        return RedirectToAction("Index");
+    }
 }

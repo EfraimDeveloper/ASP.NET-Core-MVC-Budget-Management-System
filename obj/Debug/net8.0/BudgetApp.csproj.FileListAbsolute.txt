@@ -129,3 +129,4 @@ C:\Users\Efraim Marcelino\source\repos\WebApplicationMVC\WebApplicationMVC\bin\D
 C:\Users\Efraim Marcelino\source\repos\WebApplicationMVC\WebApplicationMVC\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Efraim Marcelino\source\repos\WebApplicationMVC\WebApplicationMVC\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Efraim Marcelino\source\repos\WebApplicationMVC\WebApplicationMVC\obj\Debug\net8.0\BudgetApp.csproj.Up2Date
+C:\Users\Efraim Marcelino\source\repos\WebApplicationMVC\WebApplicationMVC\obj\Debug\net8.0\BudgetApp.sourcelink.json

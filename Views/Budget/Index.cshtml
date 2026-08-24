@@ -10,6 +10,7 @@
             <th>Quantidade</th>
             <th>Preço</th>
             <th>Total</th>
+            <th>Ações</th>
             </tr>
         </thead>
 
@@ -22,6 +23,7 @@
                     <td>@budget.quantity</td>
                     <td>@budget.UnitPrice £</td>
                     <td>@budget.TotalPrice £</td>
+                    <td><a asp-action="Edit" asp-route-id="@budget.Id" class="btn btn-primary">Edit</a></td>
                 </tr>
             }
         </tbody>
