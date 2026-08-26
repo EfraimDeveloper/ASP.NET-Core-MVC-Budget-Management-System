@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BudgetApp.Tests/BudgetApp.Tests.csproj" Id="522bba7a-e95b-4a52-889a-e17c0fcc581e" />
+  <Project Path="WebApplicationMVC/BudgetApp.csproj" />
+</Solution>
