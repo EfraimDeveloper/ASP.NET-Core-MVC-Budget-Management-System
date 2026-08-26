@@ -1,0 +1,31 @@
+﻿@model List<BudgetApp.Models.Budget>
+
+<a asp-action="create" class="btn btn-primary">Create New Budget</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th>Cliente</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Total</th>
+            <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var budget in Model)
+            {
+                <tr>
+                    <td>@budget.Client</td>
+                    <td>@budget.Description</td>
+                    <td>@budget.Quantity</td>
+                    <td>@budget.UnitPrice £</td>
+                    <td>@budget.TotalPrice £</td>
+                    <td><a asp-action="Edit" asp-route-id="@budget.Id" class="btn btn-primary">Edit</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@budget.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>

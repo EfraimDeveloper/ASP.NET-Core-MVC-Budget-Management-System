@@ -1,0 +1,96 @@
+using BudgetApp.Data;
+using BudgetApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace BudgetApp.Controllers;
+
+public class BudgetController : Controller
+{
+    private readonly BudgetContext _context;
+
+
+    public BudgetController(BudgetContext context)
+    {
+        _context = context;
+    }
+     public IActionResult Index()
+    {
+        var budgets = _context.Budgets.ToList();
+        return View(budgets);
+    }
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    } 
+
+    [HttpPost]
+    public IActionResult Create(Budget budget)
+    {
+        if(!ModelState.IsValid)
+        {
+            return View(budget);
+        }
+        _context.Budgets.Add(budget);
+        _context.SaveChanges();
+        
+        return RedirectToAction("Index");
+
+        //return View();
+    }
+
+    public IActionResult Edit(int id)
+    {
+        var budget=_context.Budgets.Find(id);
+
+        if(budget ==null)
+        {
+            return NotFound();
+        }
+
+        return View(budget);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Budget budget)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(budget);
+        }
+
+        _context.Budgets.Update(budget);
+        _context.SaveChanges(); 
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        var  budget=_context.Budgets.Find(id);
+
+        if(budget == null)
+        {
+            return NotFound();
+        } 
+        return View(budget);
+    }
+
+    public IActionResult DeleteConfirmed(int id)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        var budget=_context.Budgets.Find(id);
+        if (budget == null)
+        {
+            return NotFound();
+        }
+        _context.Budgets.Remove(budget);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+}
