@@ -39,7 +39,7 @@ public class BudgetController : Controller
 
         //return View();
     }
-
+    [HttpGet]
     public IActionResult Edit(int id)
     {
         var budget=_context.Budgets.Find(id);
@@ -89,4 +89,6 @@ public class BudgetController : Controller
         return RedirectToAction("Index");
     }
 
+
+   
 }
